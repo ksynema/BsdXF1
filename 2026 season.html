@@ -1077,76 +1077,32 @@ tr:hover {
 <!-- 📊 TABELA -->
 <div id="content"></div>
 
-	<div class="race-card" data-race="Australia">
+	
 
 <script>
 let activeTab = "races";
 let year = "2025";
 let selectedRace = "all";
 
-// 🔄 MOCK DATA
+// 📊 DANE
 const data = {
   races: [
-    { gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-    { gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
-	{ gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren", laps: "McLaren", time: "McLaren"   },
+    { gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren" },
+    { gp: "China", date: "23 Mar", winner: "Verstappen", team: "Red Bull" }
   ],
+
   drivers: [
-    {position:"1", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-    {position:"2", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"3", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"4", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"5", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"6", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"7", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"8", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"9", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"10", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"11", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"12", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"13", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"14", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"15", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"16", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"17", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"18", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"19", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	{position:"20", name: "Norris",nationality:"GB", team:"porto", points: 25, img: "https://via.placeholder.com/30" },
-	
+    { pos: "1", name: "Norris", nationality: "GB", team: "McLaren", pts: 25, img: "https://via.placeholder.com/30" },
+    { pos: "2", name: "Verstappen", nationality: "NL", team: "Red Bull", pts: 18, img: "https://via.placeholder.com/30" }
   ],
+
   teams: [
-    { position:"1", name: "McLaren", points: 43 },
-    { position:"2", name: "McLaren", points: 43 },
-	{ position:"3", name: "McLaren", points: 43 },
-	{ position:"4", name: "McLaren", points: 43 },
-	{ position:"5", name: "McLaren", points: 43 },
-	{ position:"6", name: "McLaren", points: 43 },
-	{ position:"7", name: "McLaren", points: 43 },
-	{ position:"8", name: "McLaren", points: 43 },
-	{ position:"9", name: "McLaren", points: 43 },
-	{ position:"10", name: "McLaren", points: 43 },
+    { pos: "1", name: "McLaren", pts: 43 },
+    { pos: "2", name: "Red Bull", pts: 35 }
   ],
+
   awards: [
-    { name: "Fastest Lap", driver: "Norris" },
+    { name: "Fastest Lap", driver: "Norris" }
   ]
 };
 
@@ -1173,14 +1129,16 @@ document.getElementById("raceFilter").addEventListener("change", (e) => {
   render();
 });
 
-// 🎯 RENDER
+// 🧠 RENDER
 function render() {
   let current = data[activeTab];
 
+  // filtr tylko dla races
   if (activeTab === "races" && selectedRace !== "all") {
     current = current.filter(r => r.gp === selectedRace);
   }
 
+  // 🧾 TYTUŁ
   let title = selectedRace === "all"
     ? year + " Results"
     : selectedRace + " Grand Prix";
@@ -1208,7 +1166,7 @@ function render() {
     });
   }
 
-  // 🧑‍🚀 DRIVERS
+  // 🧑 DRIVERS
   if (activeTab === "drivers") {
     html += `<tr>
       <th>Driver</th>
@@ -1226,7 +1184,7 @@ function render() {
     });
   }
 
-  // 🏆 TEAMS
+  // 🏎 TEAMS
   if (activeTab === "teams") {
     html += `<tr>
       <th>Team</th>
@@ -1241,7 +1199,7 @@ function render() {
     });
   }
 
-  // 🏆 AWARDS 👈 TU DODAJESZ
+  // 🏆 AWARDS
   if (activeTab === "awards") {
     html += `<tr>
       <th>Award</th>
@@ -1257,11 +1215,28 @@ function render() {
   }
 
   html += "</table></div>";
-
   document.getElementById("content").innerHTML = html;
 }
 
-  // klik
+// 🧩 KARTY WYŚCIGÓW (góra strony)
+function renderRaceCards() {
+  let html = "";
+
+  data.races.forEach(r => {
+    html += `
+      <div class="race-card" data-race="${r.gp}">
+        <img src="https://via.placeholder.com/400x250">
+        <div class="race-info">
+          <div class="round">${r.date}</div>
+          <div class="country">${r.gp}</div>
+        </div>
+      </div>
+    `;
+  });
+
+  document.getElementById("raceCardsMain").innerHTML = html;
+
+  // klik w kartę
   document.querySelectorAll("#raceCardsMain .race-card").forEach(card => {
     card.addEventListener("click", () => {
       selectedRace = card.dataset.race;
@@ -1275,13 +1250,14 @@ function render() {
     });
   });
 }
-	  render();
+
+// 🚀 START
+render();
 renderRaceCards();
 
     // 🔥 scroll do tabeli
     document.getElementById("content").scrollIntoView({ behavior: "smooth" });
-  });
-});
+  
 </script>
 
 </body>
