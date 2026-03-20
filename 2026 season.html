@@ -1,9 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>F1 Results</title>
+
+<style>
+  body {
+    background: #0b0d17;
+    color: white;
+    font-family: Arial;
+    padding: 20px;
+  }
+
+  .tabs button {
+    background: none;
+    border: none;
+    color: white;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .tabs button.active {
+    color: red;
+  }
+
+  select {
+    padding: 5px;
+    margin-right: 10px;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+    text-align: left;
+  }
+</style>
+</head>
+
 <body>
 
-<h1>2026 season</h1>
-<p>My first paragraph.</p>
+<!-- 🔝 TABS -->
+<div class="tabs">
+  <button data-tab="races" class="active">RACES</button>
+  <button data-tab="drivers">DRIVERS</button>
+  <button data-tab="teams">TEAMS</button>
+  <button data-tab="awards">AWARDS</button>
+</div>
+
+<!-- 🎛 FILTRY -->
+<div style="margin-top:20px;">
+  <select id="year">
+    <option>2025</option>
+    <option>2024</option>
+  </select>
+
+  <select id="raceFilter">
+    <option value="all">All</option>
+    <option value="Australia">Australia</option>
+    <option value="China">China</option>
+  </select>
+</div>
+
+<!-- 📊 TABELA -->
+<div id="content"></div>
+
+<script>
+let activeTab = "races";
+let year = "2025";
+let selectedRace = "all";
+
+// 🔄 MOCK DATA
+const data = {
+  races: [
+    { gp: "Australia", date: "16 Mar", winner: "Norris", team: "McLaren" },
+    { gp: "China", date: "23 Mar", winner: "Piastri", team: "McLaren" },
+  ],
+  drivers: [
+    { name: "Norris", points: 25 },
+    { name: "Piastri", points: 18 },
+  ],
+  teams: [
+    { name: "McLaren", points: 43 },
+    { name: "Red Bull", points: 30 },
+  ],
+  awards: [
+    { name: "Fastest Lap", driver: "Norris" },
+  ]
+};
+
+// 🔘 TABS
+document.querySelectorAll(".tabs button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tabs button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    activeTab = btn.dataset.tab;
+    render();
+  });
+});
+
+// 📅 YEAR
+document.getElementById("year").addEventListener("change", (e) => {
+  year = e.target.value;
+  render();
+});
+
+// 🏁 FILTER
+document.getElementById("raceFilter").addEventListener("change", (e) => {
+  selectedRace = e.target.value;
+  render();
+});
+
+// 🎯 RENDER
+function render() {
+  let current = data[activeTab];
+
+  if (activeTab === "races" && selectedRace !== "all") {
+    current = current.filter(r => r.gp === selectedRace);
+  }
+
+  let html = "";
+
+  if (activeTab === "races") {
+    html += `<table>
+      <tr><th>Grand Prix</th><th>Date</th><th>Winner</th><th>Team</th></tr>`;
+    current.forEach(r => {
+      html += `<tr>
+        <td>${r.gp}</td>
+        <td>${r.date}</td>
+        <td>${r.winner}</td>
+        <td>${r.team}</td>
+      </tr>`;
+    });
+    html += `</table>`;
+  }
+
+  if (activeTab === "drivers") {
+    html += `<table>
+      <tr><th>Driver</th><th>Points</th></tr>`;
+    current.forEach(d => {
+      html += `<tr>
+        <td>${d.name}</td>
+        <td>${d.points}</td>
+      </tr>`;
+    });
+    html += `</table>`;
+  }
+
+  if (activeTab === "teams") {
+    html += `<table>
+      <tr><th>Team</th><th>Points</th></tr>`;
+    current.forEach(t => {
+      html += `<tr>
+        <td>${t.name}</td>
+        <td>${t.points}</td>
+      </tr>`;
+    });
+    html += `</table>`;
+  }
+
+  if (activeTab === "awards") {
+    html += `<table>
+      <tr><th>Award</th><th>Driver</th></tr>`;
+    current.forEach(a => {
+      html += `<tr>
+        <td>${a.name}</td>
+        <td>${a.driver}</td>
+      </tr>`;
+    });
+    html += `</table>`;
+  }
+
+  document.getElementById("content").innerHTML = html;
+}
+
+// 🚀 start
+render();
+</script>
 
 </body>
 </html>
