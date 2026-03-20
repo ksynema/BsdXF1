@@ -1068,6 +1068,26 @@ tr:hover {
     <option value="all">All</option>
     <option value="Australia">Australia</option>
     <option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
+	<option value="China">China</option>
   </select>
 </div>
 
@@ -1200,7 +1220,8 @@ function render() {
       <th>Grand Prix</th>
       <th>Date</th>
       <th>Winner</th>
-      <th>Team</th>
+      <th>Laps</th>
+	  <th>Time</th>
     </tr>`;
 
     current.forEach(r => {
@@ -1218,8 +1239,11 @@ function render() {
   // 🧑 DRIVERS
   if (activeTab === "drivers") {
     html += `<tr>
+	  <th>Position</th>
       <th>Driver</th>
-      <th>Points</th>
+      <th>Nationality</th>
+	  <th>Team</th>
+	  <th>Points</th>
     </tr>`;
 
     current.forEach(d => {
@@ -1239,8 +1263,9 @@ function render() {
   // 🏎 TEAMS
   if (activeTab === "teams") {
     html += `<tr>
+      <th>Position</th>
       <th>Team</th>
-      <th>Points</th>
+	  <th>Points</th>
     </tr>`;
 
     current.forEach(t => {
