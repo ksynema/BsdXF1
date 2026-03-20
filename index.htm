@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+nav.menu-bar {
+  background-color: #291717; 
+  width: 100%;
+  padding: 10px 0;
+}
+
+nav.menu-bar ul {
+  display: flex;
+  flex-direction: row;        
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 30px; /* odstęp między wszystkimi przyciskami */ 
+  padding-left: 50px;  /* odsunięcie całej grupy przycisków od lewej krawędzi */  
+  margin: 0;
+  list-style: none; 
+}
+nav.menu-bar ul li {
+  position: relative; 
+  
+}
+nav.menu-bar ul li a {
+  display: block;
+  color: white;             /* zmiana koloru tekstu */
+  font-size: 16px;          /* wielkość czcionki */
+  font-weight: bold;        /* pogrubienie */
+  font-family: Arial, sans-serif; /* rodzaj czcionki */
+  text-transform: uppercase; /* wielkie litery */
+  letter-spacing: 1px;      /* odstępy między literami */
+  text-align: center; 
+  text-align: center;
+  padding: 24px 16px;
+  text-decoration: none;
+}
+nav.menu-bar ul li a:hover {
+  background-color: #291717; /* tło przy najechaniu */
+  
+}
+body {
+  margin: 0;       /* usuwa domyślne marginesy */
+  padding: 0;
+  background-color: #f0f0f0; /* wybierz swój kolor */
+    margin: 0;
+  padding: 0;
+  background-image: url('https://example.com/obrazek.jpg');
+  background-size: cover;      /* dopasowanie do całego ekranu */
+  background-repeat: no-repeat; 
+  background-position: center; /* centrowanie obrazka */
+}
+
+h2, p {
+  margin: 10px;
+}
+
+
+/* wspólne dla wszystkich dropdownów */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100vw;
+  background-color: #291717;
+  flex-wrap: wrap; 
+  gap: 10px;
+  padding: 20px 50px;
+  z-index: 10;
+  box-sizing: border-box;
+  
+}
+/* Schedule: 3 kolumny */
+.dropdown-content.schedule {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 50px;
+  background-color: #291717;
+  box-sizing: border-box;
+  z-index: 10;
+  }
+.dropdown-content.schedule div {
+  width: 250px;            /* 4 elementy na rząd */
+  background-color: #3e1f1f;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  box-sizing: border-box; /* uwzględnia padding w szerokości */
+
+}
+
+/* Results: 2 kolumny */
+.dropdown-content.results {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 50px;
+  background-color: #291717;
+  box-sizing: border-box;
+  z-index: 10;
+  }
+.dropdown-content.results div {
+  width: 250px;            /* 4 elementy na rząd */
+  background-color: #3e1f1f;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  box-sizing: border-box; /* uwzględnia padding w szerokości */
+
+}
+
+/* News: 3 kolumny */
+.dropdown-content.news {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 50px;
+  background-color: #291717;
+  box-sizing: border-box;
+  z-index: 10;
+  }
+.dropdown-content.news div {
+  width: 150px; /* 3 elementy na rząd przy szerokości kontenera 500px */
+}
+
+/* Drivers: 2 kolumny */
+.dropdown-content.drivers {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 50px;
+  background-color: #291717;
+  box-sizing: border-box;
+  z-index: 10;
+}
+.dropdown-content.drivers div {
+
+  width: 250px;            /* 4 elementy na rząd */
+  background-color: #3e1f1f;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  box-sizing: border-box; /* uwzględnia padding w szerokości */
+
+}
+
+/* Teams: 2 kolumny */
+.dropdown-content.teams {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 20px 50px;
+  background-color: #291717;
+  box-sizing: border-box;
+  z-index: 10;
+  }
+.dropdown-content.teams div {
+ 
+  width: 250px;            /* 4 elementy na rząd */
+  background-color: #3e1f1f;
+  text-align: center;
+  padding: 10px;
+  color: white;
+  box-sizing: border-box; /* uwzględnia padding w szerokości */
+
+}
+
+
+.dropdown-content div img {
+  width: 100%;
+  height: auto;
+}
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+}
+
+.dropdown img {
+  display: block;
+}
+
+</style>
+</head>
+<body>
+
+<nav class="menu-bar">
+<ul>
+  <li class="dropdown">
+    <a href="#">Schedule</a>
+    <div class="dropdown-content schedule">
+      <div>
+        <a href="driver.html">
+          <img src="x" width="200">
+          <div>x</div>
+        </a>
+      </div>
+
+      <div>
+        <a href="driver.html">Link 2</a>
+      </div>
+
+      <div>
+        <a href="#">Link 3</a>
+      </div>
+
+      <div>
+        <a href="#">Link 4</a>
+      </div>
+
+      <div>
+        <a href="#">Link 5</a>
+      </div>
+
+    </div>
+
+  </li>
+  
+  <li class="dropdown">
+
+    <a href="#">Results</a>
+
+    <div class="dropdown-content results">
+
+      <div>
+        <a href="driver.html">
+          <img src="x" width="200">
+          <div>x</div>
+        </a>
+      </div>
+
+      <div>
+        <a href="driver.html">Link 2</a>
+      </div>
+
+      <div>
+        <a href="#">Link 3</a>
+      </div>
+
+      <div>
+        <a href="#">Link 4</a>
+      </div>
+
+      <div>
+        <a href="#">Link 5</a>
+      </div>
+
+    </div>
+
+  </li>
+  
+  
+
+  <li class="dropdown">
+
+    <a href="#">News</a>
+
+    <div class="dropdown-content news">
+
+      <div>
+        <a href="driver.html">
+          <img src="x" width="200">
+          <div>x</div>
+        </a>
+      </div>
+
+      <div>
+        <a href="driver.html">Link 2</a>
+      </div>
+
+      <div>
+        <a href="#">Link 3</a>
+      </div>
+
+      <div>
+        <a href="#">Link 4</a>
+      </div>
+
+      <div>
+        <a href="#">Link 5</a>
+      </div>
+
+    </div>
+
+  </li>
+  
+  <li class="dropdown">
+
+    <a href="#">Drivers</a>
+
+    <div class="dropdown-content drivers">
+
+      <div>
+        <a href="driver.html">
+          <img src="x" width="200">
+          <div>Gin Akutagawa</div>
+        </a>
+      </div>
+
+      <div>
+        <a href="driver.html">Ryūnosuke Akutagawa</a>
+      </div>
+
+      <div>
+        <a href="#">Ivan Goncharov</a>
+      </div>
+
+      <div>
+        <a href="#">Nikolai Gogol</a>
+      </div>
+
+      <div>
+        <a href="#">Nathaniel Hawthorne</a>
+      </div>
+	  
+	  <div>
+        <a href="#">Kyōka Izumi</a>
+      </div>
+	  <div>
+        <a href="#">Saigiku Jōno</a>
+      </div>
+	  <div>
+        <a href="#">Doppo Kunikida</a>
+      </div>
+	  <div>
+        <a href="#">Lucy Montgomery</a>
+      </div>
+	  <div>
+        <a href="#">Yachiyo Murakoso</a>
+      </div>
+	  <div>
+        <a href="#">Kenji Miyazawa</a>
+      </div>
+	  <div>
+        <a href="#">Chūya Nakahara</a>
+      </div>
+	  <div>
+        <a href="#">Atsushi Nakajima</a>
+      </div>
+	  <div>
+        <a href="#">Teruko Ōkura</a>
+      </div>
+	  <div>
+        <a href="#">Alexander Pushkin</a>
+      </div>
+	  <div>
+        <a href="#">Sigma</a>
+      </div>
+	  <div>
+        <a href="#">John Steinbeck</a>
+      </div>
+	  <div>
+        <a href="#">Michizō Tachihara</a>
+      </div>
+	  <div>
+        <a href="#">Mark Twain</a>
+      </div>
+	  <div>
+        <a href="#">Mizuki Tsujimura</a>
+      </div>
+
+    </div>
+
+  </li>
+  
+<li class="dropdown">
+
+    <a href="#">Teams</a>
+
+    <div class="dropdown-content teams">
+
+      <div>
+        <a href="driver.html">
+          <img src="" width="200">
+          <div>x</div>
+        </a>
+      </div>
+
+      <div>
+        <a href="driver.html">Link 2</a>
+      </div>
+
+      <div>
+        <a href="#">Link 3</a>
+      </div>
+
+      <div>
+        <a href="#">Link 4</a>
+      </div>
+
+      <div>
+        <a href="#">Link 5</a>
+      </div>
+
+    </div>
+
+  </li>
+</ul>
+
+</body>
+</html>

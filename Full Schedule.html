@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #0c0f1f;
+  padding: 10px 40px;
+  border-top: 1px solid #222;
+}
+nav.menu-bar {
+  background-color: #0c0f1f; 
+  width: 100%;
+  padding: 10px 0;
+}
+
+
+
+nav.menu-bar ul {
+  display: flex;
+  flex-direction: row;        
+  justify-content: flex-start; 
+  align-items: center; 
+  gap: 30px; /* odstęp między wszystkimi przyciskami */ 
+  padding-left: 50px;  /* odsunięcie całej grupy przycisków od lewej krawędzi */  
+  margin: 0;
+  list-style: none; 
+}
+nav.menu-bar ul li {
+  position: relative; 
+  
+}
+nav.menu-bar ul li a {
+  display: block;
+  color: white;             /* zmiana koloru tekstu */
+  font-size: 16px;          /* wielkość czcionki */
+  font-weight: bold;        /* pogrubienie */
+  font-family: Palatino Linotype, sans-serif; /* rodzaj czcionki */
+  text-transform: uppercase; /* wielkie litery */
+  letter-spacing: 1px;      /* odstępy między literami */
+  text-align: center; 
+  text-align: center;
+  padding: 24px 16px;
+  text-decoration: none;
+}
+nav.menu-bar ul li a:hover {
+  background-color: #0c0f1f; /* tło przy najechaniu */
+  
+}
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Palatino Linotype', sans-serif;
+}
+/* wszystkie linki jako przyciski */
+a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+a:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* efekt kliknięcia */
+a:active {
+  transform: scale(0.95);
+
+}
+body {
+  margin: 0;       /* usuwa domyślne marginesy */
+  padding: 0;
+  background-color: #0c0f1f; /* wybierz swój kolor */
+    margin: 0;
+  padding: 0;
+  background-image: url('https://example.com/obrazek.jpg');
+  background-size: cover;      /* dopasowanie do całego ekranu */
+  background-repeat: no-repeat; 
+  background-position: center; /* centrowanie obrazka */
+}
+
+h2, p {
+  margin: 10px;
+}
+
+.race-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  max-width: 1400px;
+  margin: 40px auto;
+}
+.race-card {
+  display: block;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  height: 250px;
+
+  text-decoration: none;
+  color: white;
+}
+
+
+.race-card:hover img{
+  transform: scale(1.05);
+}
+.race-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.2)
+  );
+}
+.race-info{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 2;
+}
+.round{
+  font-size: 12px;
+  opacity: 0.8;
+  letter-spacing: 1px;
+}
+
+.country{
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.date{
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.schedule-footer{
+  margin-top: 20px;
+}
+
+.schedule-btn{
+  display: inline-block;
+  padding: 6px 15px;
+
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 12px;
+
+  border: 2px solid white;
+  border-radius: 30px;
+
+  transition: all 0.3s ease;
+}
+.schedule-btn:hover{
+  background-color: white;
+  color: #0c0f1f;
+}
+.news-container{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 35px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.news-card{
+  position: relative;
+  border-radius: 12px;
+  
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  height: 250px;
+
+}
+
+.news-card img{
+  width: 120%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.news-card:hover img{
+  transform: scale(1.05);
+}
+.news-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.7),
+    rgba(0,0,0,0.2)
+  );
+}
+.news-info{
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: white;
+  z-index: 2;
+}
+
+
+
+
+/* wspólne dla wszystkich dropdownów */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100vw;
+  background-color: #0c0f1f;
+  flex-wrap: wrap; 
+  gap: 10px;
+  padding: 20px 20px;
+  z-index: 10;
+  box-sizing: border-box;
+  
+}
+/* Schedule: 3 kolumny */
+.dropdown-content.schedule{
+  display: none;
+  position: fixed;
+  top: 120px;
+  left: 0;
+  width: 100vw;
+
+  background-color: #0c0f1f;
+  padding: 60px 100px;
+  box-sizing: border-box;
+}
+
+
+/* Results: 2 kolumny */
+.dropdown-content.results {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 30px;
+  background-color: #0c0f1f;
+  box-sizing: border-box;
+  z-index: 10;
+   display: flex;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+  }
+.dropdown-content.results div {
+  width: 250px;            /* 4 elementy na rząd */
+ 
+  text-align: center;
+  padding: 10px;
+  color: white;
+  box-sizing: border-box; /* uwzględnia padding w szerokości */
+
+}
+
+/* News: 3 kolumny */
+/* News: poprawiona wersja */
+.dropdown-content.news {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+  gap: 25px;
+  position: fixed;
+  top: 120px;
+  left: 0;
+  width: 100vw;
+  padding: 10px 30px;
+  background-color: #0c0f1f;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.dropdown-content.news .news-card,
+.dropdown-content.news .news-btn {
+  background-color: #0c0f1f;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.dropdown-content.news .news-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Drivers: 2 kolumny */
+.dropdown-content.drivers {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: #0c0f1f;
+  box-sizing: border-box;
+  z-index: 10;
+  
+}
+.dropdown-content.drivers div {
+
+  width: 275px;            /* 4 elementy na rząd */
+  height: 80px;
+  
+
+  padding: 10px;
+  color: white;
+  box-sizing: border-box; /* uwzględnia padding w szerokości */
+
+}
+
+/* Teams: 2 kolumny */
+.dropdown-content.teams {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  width: 100vw;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 30px;
+  background-color: #0c0f1f;
+  box-sizing: border-box;
+  z-index: 10;
+  }
+.dropdown-content.teams div {
+ 
+  width: 275px;            /* 4 elementy na rząd */
+  
+  text-align: center;
+  padding: 10px;
+  color: white;
+  box-sizing: border-box; /* uwzględnia padding w szerokości */
+
+}
+.driver-item a{
+  display: flex;
+
+  gap: 18px;
+  text-align: right;  /* usuwa centrowanie */
+  text-decoration: none;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.driver-img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  
+}
+.driver-item a:hover{
+  background-color: #1a2a4a;
+}
+.driver-name{
+  
+  text-align: right;  /* usuwa centrowanie */
+  left: 100px;
+  border-radius: 10px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+}
+.driver-item a:hover{
+  background-color: #16213e;
+  color: #0c0f1f;
+}
+
+
+.dropdown-content a {
+  color: black;
+  text-decoration: none;
+}
+.dropdown:hover .dropdown-content {
+  pointer-events: auto;
+}
+
+
+/* ALE dla Schedule nadpisujemy */
+.dropdown:hover .dropdown-content.schedule {
+  display: block;
+}
+
+.dropdown img {
+  display: block;
+
+}
+.dropdown:hover .dropdown-content.results {
+  display: flex; /* lub block w zależności od układu */
+  flex-wrap: wrap;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* News */
+.dropdown:hover .dropdown-content.news {
+  display: grid; /* grid dla news */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+/* Drivers i Teams analogicznie */
+.dropdown:hover .dropdown-content.drivers{
+  display: flex;
+  flex-wrap: wrap;
+  }
+
+
+.dropdown:hover .dropdown-content.teams {
+  display: flex;
+  flex-wrap: wrap;
+  }
+body {
+  background: #0d0f1a;
+  color: white;
+}
+  /* NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #111322;
+  padding: 15px 40px;
+  border-bottom: 2px solid #222;
+}
+
+.nav-center a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-center a:hover {
+  color: #e10600; /* F1 red */
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.sign-in {
+  background: black;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.subscribe {
+  background: #e10600;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+body {
+  padding-top: 140px; /* dopasujemy za chwilę */
+  overflow-y: auto;
+}
+.dropdown-content {
+  display: none;
+  pointer-events: none;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  pointer-events: auto;
+}
+html, body {
+  height: auto;
+  overflow-y: auto;
+}
+.event-card {
+  
+  background: #0c0f1f;
+  padding: 20px;
+  border-radius: 15px;
+  color: white;
+  text-decoration: none;
+
+  min-height: 180px;
+  transition: 0.3s;
+  display: block;
+  width: 100%;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  background: #141833;
+}
+.event-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+.country {
+  font-size: 26px;
+  margin: 5px 0;
+}
+
+.race-name {
+  font-size: 12px;
+  opacity: 0.7;
+}
+.event-footer {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.next-race {
+  background: #e10600;
+  color: white;
+}
+
+.next-race:hover {
+  background: #ff1a1a;
+}
+.events-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+  max-width: 1400px;
+  margin: 40px auto;
+}
+.results {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.results span {
+  background: #1a1f3a;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.events-labels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 1400px;
+  margin: 0 auto 10px auto;
+  padding: 0 10px;
+  color: rgba(255,255,255,0.6);
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.events-labels div {
+  text-align: left;
+}
+.events-labels div:nth-child(2) {
+  color: #e10600;
+}
+
+.race-card {
+  background-size: cover;
+  background-position: center;
+}
+
+.race-card.china {
+  background-image: url("https://tse4.mm.bing.net/th/id/OIP.KXl71xts7GMFuWwYxEijAAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3");
+}
+
+.race-card.japan {
+  background-image: url("img/japan.jpg");
+}
+ 
+</style>
+</head>
+<body>
+<div class="fixed-header">
+<nav class="navbar">
+  <div class="nav-left">
+   <a href="#" onclick="openSeries()">Race Series ▼</a>
+    <a href="#" onclick="openSeries()">Race Series ▼</a>
+  </div>
+
+  <div class="nav-center">
+    <a href="#" onclick="navigate('auth')">AUTHENTICS</a>
+    <a href="#" onclick="navigate('store')">STORE</a>
+    <a href="#" onclick="navigate('tickets')">TICKETS</a>
+    <a href="#" onclick="navigate('hospitality')">HOSPITALITY</a>
+    <a href="#" onclick="navigate('experiences')">EXPERIENCES</a>
+  </div>
+
+  <div class="nav-right">
+    <a href="#" onclick="openF1TV()" class="logo">F1 TV</a>
+    <button class="sign-in" onclick="signIn()">Sign In</button>
+    <button class="subscribe" onclick="subscribe()">Subscribe</button>
+  </div>
+</nav>
+<nav class="menu-bar">
+<ul>
+
+<li class="dropdown">
+  <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/inne/Full%20Schedule.html">Schedule</a>
+
+  <div class="dropdown-content schedule">
+
+    <div class="race-container">
+
+      <div class="race-card china">
+        
+        <div class="race-info">
+          <div class="round">ROUND 2</div>
+          <div class="country">China</div>
+          <div class="date">13 – 15 MAR</div>
+        </div>
+      </div>
+
+      <div class="race-card">
+        
+        <div class="race-info">
+          <div class="round">ROUND 3</div>
+          <div class="country">Japan</div>
+          <div class="date">27 – 29 MAR</div>
+        </div>
+      </div>
+
+      <div class="race-card">
+        
+        <div class="race-info">
+          <div class="round">ROUND 4</div>
+          <div class="country">Miami</div>
+          <div class="date">01 – 03 MAY</div>
+        </div>
+      </div>
+
+      <div class="race-card">
+        
+        <div class="race-info">
+          <div class="round">ROUND 5</div>
+          <div class="country">Canada</div>
+          <div class="date">22 – 24 MAY</div>
+        </div>
+      </div>
+	  
+     <div class="schedule-footer">
+      <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/Full%20Schedule.html" class="schedule-btn">Full Schedule</a>
+     </div>
+    </div>
+
+  </div>
+</li>
+
+
+  
+  <li class="dropdown">
+
+    <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/2026%20season.html">Results</a>
+
+    <div class="dropdown-content results">
+
+      <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/2026%20season.html" class="schedule-btn">2026 season</a>
+      </div>
+
+      <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/Driver%20Standing.html" class="schedule-btn">Driver Standing</a>
+      </div>
+
+      <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/Team%20standing.html" class="schedule-btn">Team standing</a>
+      </div>
+
+      <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/Archive%201950-2026.html" class="schedule-btn">Archive 1950-2026</a>
+      </div>
+
+      <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/F1%20awards.html" class="schedule-btn">F1 awards</a>
+      </div>
+
+    </div>
+
+  </li>
+  
+  
+
+  <li class="dropdown">
+
+    <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/More%20news.html">News</a>
+
+    <div class="dropdown-content news">
+     
+      
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/what%20is%20f1.html" class="schedule-btn">what is f1?</a>     
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/what%20is%20f1tv.html" class="schedule-btn">what is f1tv</a>
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/F1%20glossary.html" class="schedule-btn">F1 glossary</a>      
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/get%20involved.html" class="schedule-btn">get involved</a>          
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/2026%20regulations.html" class="schedule-btn">2026 regulations</a>
+
+      <div class="news-card">
+        <img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg">
+        <div class="race-info">
+        </div>
+      </div>
+
+      <div class="news-card">
+        <img src="japan.jpg">
+        <div class="news-info">        
+        </div>
+      </div>
+
+      <div class="news-card">
+        <img src="miami.jpg">
+        <div class="news-info">     
+        </div>
+      </div>
+
+      <div class="news-card">
+        <img src="canada.jpg">
+        <div class="news-info">         
+        </div>
+      </div>
+	  
+	   <div class="news-card">
+        <img src="canada.jpg">
+        <div class="news-info">         
+        </div>
+      </div>
+	  
+	  
+     <div class="schedule-footer">
+      <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/More%20news.html" class="schedule-btn">More news</a>
+     </div>
+	 
+    </div>
+
+  </li>
+  
+  <li class="dropdown">
+
+    <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/All%20drivers.html">Drivers</a>
+
+    <div class="dropdown-content drivers">
+
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Gin%20Akutagawa/Gin%20Akutagawa.html">
+          <img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Gin Akutagawa\Gin_Akutagawa_29.webp" class="driver-img">
+          <span class="driver-name">Gin <strong>Akutagawa</strong>
+		  </span>
+        </a>
+      </div>
+
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Ry%C5%ABnosuke%20Akutagawa/Ry%C5%ABnosuke%20Akutagawa.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Ryūnosuke Akutagawa\Ryunosuke_Akutagawa_29.webp" class="driver-img">
+          <span class="driver-name">Ryūnosuke <strong>Akutagawa</strong>
+		  </span>
+        </a>
+      </div>
+	  
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Ivan%20Goncharov/Ivan%20Goncharov.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Ivan Goncharov\Ivan_Goncharov_29.webp" class="driver-img">
+          <span class="driver-name">Ivan <strong>Goncharov</strong>
+		  </span>
+        </a>
+      </div>
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Nikolai%20Gogol/Nikolai%20Gogol.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Nikolai Gogol\Nikolai_Gogol_29.webp" class="driver-img">
+          <span class="driver-name">Nikolai <strong>Gogol</strong>
+		  </span>
+        </a>
+      </div>
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Nathaniel%20Hawthorne/Nathaniel%20Hawthorne.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Nathaniel Hawthorne\Nathaniel_Hawthorne_29.webp" class="driver-img">
+          <span class="driver-name">Nathaniel <strong>Hawthorne</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Ky%C5%8Dka%20Izumi/Ky%C5%8Dka%20Izumi.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Kyōka Izumi\Kyoka_Izumi_29.webp" class="driver-img">
+          <span class="driver-name">Kyōka <strong>Izumi</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Saigiku%20J%C5%8Dno/Saigiku%20J%C5%8Dno.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Saigiku Jōno\Saigiku_Jono_29.webp" class="driver-img">
+          <span class="driver-name">Saigiku <strong>Jōno</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Doppo%20Kunikida/Doppo%20Kunikida.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Doppo Kunikida\Doppo_Kunikida_29.webp" class="driver-img">
+          <span class="driver-name">Doppo <strong>Kunikida</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Lucy%20Montgomery/Lucy%20Montgomery.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Lucy Montgomery\Lucy_Maud_Montgomery_29.webp" class="driver-img">
+          <span class="driver-name">Lucy <strong>Montgomery</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Yachiyo%20Murakoso/Yachiyo%20Murakoso.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Yachiyo Murakoso\Murakoso_29.webp" class="driver-img">
+          <span class="driver-name">Yachiyo <strong>Murakoso</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Kenji%20Miyazawa/Kenji%20Miyazawa.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Kenji Miyazawa\Kenji_Miyazawa_29.webp" class="driver-img">
+          <span class="driver-name">Kenji <strong>Miyazawa</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Ch%C5%ABya%20Nakahara/Ch%C5%ABya%20Nakahara.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Chūya Nakahara\Chuya_Nakahara_29.webp"class="driver-img">
+          <span class="driver-name">Chūya <strong>Nakahara</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Atsushi%20Nakajima/Atsushi%20Nakajima.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Atsushi Nakajima\Atsushi_Nakajima_29.jpg" class="driver-img">
+          <span class="driver-name">Atsushi <strong>Nakajima</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Teruko%20%C5%8Ckura/Teruko%20%C5%8Ckura.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Teruko Ōkura\Teruko_Okura_29.webp" class="driver-img">
+          <span class="driver-name">Teruko <strong>Ōkura</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Alexander%20Pushkin/Alexander%20Pushkin.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Alexander Pushkin\Alexander_Pushkin.webp" class="driver-img">
+          <span class="driver-name">Alexander <strong>Pushkin</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Sigma/Sigma.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Sigma\Sigma.webp" class="driver-img">
+          <span class="driver-name"> <strong>Sigma</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/John%20Steinbeck/John%20Steinbeck.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\John Steinbeck\John_Steinbeck_29.webp" class="driver-img">
+          <span class="driver-name">John <strong>Steinbeck</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Michiz%C5%8D%20Tachihara/Michiz%C5%8D%20Tachihara.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Michizō Tachihara\Hunting_Dogs_Tachihara.webp" class="driver-img">
+          <span class="driver-name">Michizō <strong>Tachihara</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Mark%20Twain/Mark%20Twain.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Mark Twain\Mark_Twain_29.webp" class="driver-img">
+          <span class="driver-name">Mark <strong>Twain</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/drivers/Mizuki%20Tsujimura/Mizuki%20Tsujimura.html">
+		<img src="C:\Users\ksyne\OneDrive\Dokumenty\f1Xbsd\drivers\Mizuki Tsujimura\Mizuki_Tsujimura_29.webp" class="driver-img">
+          <span class="driver-name">Mizuki <strong>Tsujimura</strong>
+		  </span>
+        </a>
+      </div>
+      <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/All%20drivers.html" class="schedule-btn">All drivers</a>
+      </div>
+	  <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/hall%20of%20fame.html" class="schedule-btn">Hall of fame</a>
+      </div>
+    </div>
+
+  </li>
+  
+<li class="dropdown">
+
+    <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/All%20teams.html">Teams</a>
+
+    <div class="dropdown-content teams">
+
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/agency%20racing%20limited.html">
+          <img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>agency racing limited</strong>
+		  </span>
+        </a>
+      </div>
+
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/balena%20bianca.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>balena bianca</strong>
+		  </span>
+        </a>
+      </div>
+
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/black%20lizards%20f1%20team.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>black lizards f1 team</strong>
+		  </span>
+        </a>
+      </div>
+
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/guild%20mercedes%20F1%20team.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>guild mercedes F1 team</strong>
+		  </span>
+        </a>
+      </div>
+
+      <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/hunting%20dogs.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>hunting dogs</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/Osaka%20engeniering.html"> 
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>Osaka engeniering </strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/porto%20motorsports%20limited.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>porto motorsports limited</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/Renault%20anges%20limited.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>Renault anges limited</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/Special%20Division%20F1%20team.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>Special Division F1 team</strong>
+		  </span>
+        </a>
+      </div>
+	  <div class="driver-item">
+        <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/teams/versements.html">
+		<img src="C:\Users\ksyne\Downloads\red-bull-rb19-old-3d-model-96a9dc6921.jpg" class="driver-img">
+          <span class="driver-name"><strong>versements</strong>
+		  </span>
+        </a>
+      </div>
+      <div class="schedule-footer">
+       <a href="file:///C:/Users/ksyne/OneDrive/Dokumenty/f1Xbsd/All%20teams.html" class="schedule-btn">All teams</a>
+      </div>
+    </div>
+
+   </li>
+ </ul>
+</nav>
+<div class="top-bar">
+  <div class="left">
+    <span>R03 | 27–29 MAR</span>
+    <strong>🇯🇵 Japan</strong>
+  </div>
+
+  <div class="right">
+    <span>MY TIME 19:24</span>
+    <span>TRACK TIME 03:24</span>
+  </div>
+</div>
+</div>
+
+ 
+<div class="events-labels">
+  <div>PREVIOUS</div>
+  <div>CURRENT</div>
+  <div>NEXT</div>
+  <div>UPCOMING</div> <!-- pusty do wyrównania -->
+</div>
+<div class="race-container">  
+
+  <a href="china.html" class="race-card china">
+    
+    <div class="race-info">
+      <div class="round">Testing</div>
+      <div class="country">Bahrain</div>
+      <div class="date">13 – 15 MAR</div>
+    </div>
+  </a>
+    <a href="china.html" class="race-card ">
+    
+    <div class="race-info">
+      <div class="round">ROUND 1</div>
+      <div class="country">AUSTRALIA</div>
+      <div class="date">13 – 15 MAR</div>
+    </div>
+  </a>
+    <a href="china.html" class="race-card">
+    
+    <div class="race-info">
+      <div class="round">ROUND 2</div>
+      <div class="country">CHINA</div>
+      <div class="date">13 – 15 MAR</div>
+    </div>
+  </a>
+    <a href="china.html" class="race-card">
+    
+    <div class="race-info">
+      <div class="round">ROUND 3</div>
+      <div class="country">JAPAN</div>
+      <div class="date">13 – 15 MAR</div>
+    </div>
+  </a>
+ </div>
+
+<div class="events-container">
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">Testing</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Bahrain</h2>
+    <p class="race-name">FORMULA 1 Pre-season testing 1 2026</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 1</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">AUSTRALIA</h2>
+    <p class="race-name">FORMULA 1 LOUIS VUITTON AUSTRALIAN GRAND PRIX 2025</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 2</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">CHINA</h2>
+    <p class="race-name">FORMULA 1 HEINEKEN CHINESE GRAND PRIX 2025 </p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 3</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">JAPAN</h2>
+    <p class="race-name">FORMULA 1 LENOVO JAPANESE GRAND PRIX 2025 </p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 4</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Spain</h2>
+    <p class="race-name">FORMULA 1 ARAMCO GRAN PREMIO DE ESPAÑA 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 5</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">MONACO</h2>
+    <p class="race-name">FORMULA 1 GRAND PRIX DE MONACO 2021 </p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 6</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">AZERBAIJAN</h2>
+    <p class="race-name">FORMULA 1 AZERBAIJAN GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 7</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">FRANCE</h2>
+    <p class="race-name">FORMULA 1 EMIRATES GRAND PRIX DE FRANCE 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 8</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Styria</h2>
+    <p class="race-name">FORMULA 1 BWT GROSSER PREIS DER STEIERMARK 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 9</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Austria</h2>
+    <p class="race-name">FORMULA 1 BWT GROSSER PREIS VON ÖSTERREICH 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 10</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Great Britain</h2>
+    <p class="race-name">FORMULA 1 PIRELLI BRITISH GRAND PRIX 2021 - RACE RESULT</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 11</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Hungary</h2>
+    <p class="race-name">FORMULA 1 ROLEX MAGYAR NAGYDÍJ 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 12</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Belgium</h2>
+    <p class="race-name">FORMULA 1 ROLEX BELGIAN GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 13</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Netherlands</h2>
+    <p class="race-name">FORMULA 1 HEINEKEN DUTCH GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 14</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Italy</h2>
+    <p class="race-name">FORMULA 1 HEINEKEN GRAN PREMIO D’ITALIA 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 15</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Russia</h2>
+    <p class="race-name">FORMULA 1 VTB RUSSIAN GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+    <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 16</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Turkey</h2>
+    <p class="race-name">FORMULA 1 ROLEX TURKISH GRAND PRIX 2021 </p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+     <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 17</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">UNITED STATES</h2>
+    <p class="race-name">FORMULA 1 ARAMCO UNITED STATES GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+     <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 18</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">MÉXICO</h2>
+    <p class="race-name">FORMULA 1 GRAN PREMIO DE LA CIUDAD DE MÉXICO 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+     <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 19</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">Brazil</h2>
+    <p class="race-name">FORMULA 1 HEINEKEN GRANDE PRÊMIO DE SÃO PAULO 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+     <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 20</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">QATAR</h2>
+    <p class="race-name">FORMULA 1 OOREDOO QATAR GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+     <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 21</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">SAUDI ARABIA</h2>
+    <p class="race-name">FORMULA 1 STC SAUDI ARABIAN GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+     <a href="miami.html" class="event-card">
+    <div class="event-header">
+      <span class="round">ROUND 22</span>
+      <span class="date">01 – 03 MAY</span>
+    </div>
+
+    <h2 class="country">ABU DHABI</h2>
+    <p class="race-name">FORMULA 1 ETIHAD AIRWAYS ABU DHABI GRAND PRIX 2021</p>
+
+    <div class="event-footer">
+      <span>01 – 03 MAY</span>
+    </div>
+  </a>
+</div>
+</div>
+</body>
+</html>
