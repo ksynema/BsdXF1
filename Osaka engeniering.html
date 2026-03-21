@@ -629,44 +629,86 @@ body {
   width: 100%;
   z-index: 9999;
 }
+/* GLOBAL */
 body {
-  padding-top: 180px; /* dopasujemy za chwilę */
+  background: #0b0d17;
+  color: white;
+  font-family: 'Orbitron', 'Segoe UI', sans-serif;
 }
+
+h1, h2 {
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* CZERWONA LINIA F1 */
+.section-divider {
+  height: 6px;
+  background: #e10600;
+  width: 100%;
+  margin: 40px 0;
+}
+
 /* HERO */
 .team-hero {
   text-align: center;
-  padding: 60px;
-  background: linear-gradient(90deg,#0077b6,#00b4d8);
+  padding: 80px 40px;
+  background: linear-gradient(90deg, #0a2540, #0077b6);
+  position: relative;
+}
+
+.team-hero::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  width: 90%;
+  height: 4px;
+  background: white;
 }
 
 .team-car {
-  width: 80%;
-  max-width: 900px;
+  width: 85%;
+  max-width: 1000px;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
 }
 
 .team-hero h1 {
-  font-size: 60px;
-  margin: 20px 0;
+  font-size: 70px;
+  margin-top: 20px;
 }
 
 .drivers {
   font-size: 18px;
-  opacity: 0.8;
+  opacity: 0.85;
+  margin-top: 10px;
 }
 
 .shop-btn {
-  margin-top: 20px;
-  padding: 12px 30px;
-  border-radius: 25px;
-  border: 1px solid white;
+  margin-top: 25px;
+  padding: 12px 35px;
+  border-radius: 30px;
+  border: 2px solid white;
   background: transparent;
   color: white;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
+.shop-btn:hover {
+  background: white;
+  color: black;
+}
 
 /* DRIVERS */
 .drivers-section {
-  padding: 50px;
+  padding: 60px;
+}
+
+.drivers-section h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .drivers-grid {
@@ -676,17 +718,40 @@ body {
 
 .driver-card {
   flex: 1;
-  background: #161a2b;
+  background: linear-gradient(135deg, #0a2540, #0077b6);
+  border-radius: 15px;
   padding: 30px;
-  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
+.driver-card:hover {
+  transform: scale(1.03);
+}
+
+.driver-card h3 {
+  font-size: 26px;
+}
+
+.driver-card span {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 40px;
+  opacity: 0.2;
+}
 
 /* STATS */
 .stats-section {
   display: flex;
   gap: 40px;
-  padding: 50px;
+  padding: 60px;
+}
+
+.season-stats h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .stats-grid {
@@ -696,45 +761,93 @@ body {
 }
 
 .stats-grid div {
-  background: #161a2b;
+  background: #111322;
   padding: 20px;
   border-radius: 10px;
+  border-left: 3px solid #e10600;
 }
 
+.stats-grid span {
+  opacity: 0.7;
+}
+
+.stats-grid strong {
+  font-size: 22px;
+}
+
+/* TEAM SUMMARY */
 .team-summary {
-  background: #2a2f3f;
+  background: #1a1f33;
   padding: 30px;
-  border-radius: 12px;
+  border-radius: 15px;
   flex: 1;
+  border-top: 4px solid #e10600;
+}
+
+.team-summary h2 {
+  margin-bottom: 20px;
 }
 
 .team-summary p {
   display: flex;
   justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-
-/* PROFILE */
+/* TEAM PROFILE */
 .team-profile {
-  padding: 50px;
+  padding: 60px;
+}
+
+.team-profile h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
 }
 
 .profile-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
 }
 
 .profile-grid div {
-  background: #161a2b;
+  background: #111322;
   padding: 20px;
   border-radius: 10px;
+  border-top: 3px solid #e10600;
 }
 
+.profile-grid span {
+  opacity: 0.6;
+  font-size: 13px;
+}
+
+.profile-grid strong {
+  font-size: 18px;
+}
+
+/* OPIS */
 .team-desc {
   margin-top: 30px;
-  max-width: 800px;
+  max-width: 900px;
+  line-height: 1.6;
   opacity: 0.8;
+}
+
+/* RESPONSYWNOŚĆ */
+@media(max-width: 900px){
+  .stats-section {
+    flex-direction: column;
+  }
+
+  .drivers-grid {
+    flex-direction: column;
+  }
+
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 </head>
