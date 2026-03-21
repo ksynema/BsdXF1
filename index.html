@@ -702,6 +702,48 @@ html, body {
 .third {
   background: linear-gradient(90deg, #b71c1c, #ff1744);
 }
+	.card {
+  flex: 1;
+  padding: 25px;
+  border-radius: 16px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-top: 10px;
+}
+
+.card p {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.pos {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+.pts {
+  position: absolute;
+  bottom: 15px;
+  left: 25px;
+  font-weight: bold;
+}
+
+.first {
+  background: linear-gradient(90deg, #00c6a7, #1de9b6);
+}
+
+.second {
+  background: linear-gradient(90deg, #009688, #00bfa5);
+}
+
+.third {
+  background: linear-gradient(90deg, #b71c1c, #ff1744);
+}
 </style>
 </head>
 <body>
@@ -1169,19 +1211,7 @@ html, body {
     <!-- reszta newsów -->
 
 </div>
-	<!-- CONTENT -->
-  <div class="content">
-
-    <!-- DRIVERS -->
-    <div class="tab-content active" id="drivers">
-
-      <!-- PODIUM -->
-      <div class="podium">
-        <div class="card second">2ND</div>
-        <div class="card first">1ST</div>
-        <div class="card third">3RD</div>
-      </div>
-
+	
 
 <!-- 🔹 NOWA SEKCJA – STANDINGS -->
 <div class="standings-section">
@@ -1197,10 +1227,27 @@ html, body {
 
     <!-- PODIUM DRIVERS -->
     <div class="podium">
-      <div class="card second">2ND</div>
-      <div class="card first">1ST</div>
-      <div class="card third">3RD</div>
-    </div>
+  <div class="card second">
+    <span class="pos">2ND</span>
+    <h3>Kimi Antonelli</h3>
+    <p>Mercedes</p>
+    <span class="pts">47 PTS</span>
+  </div>
+
+  <div class="card first">
+    <span class="pos">1ST</span>
+    <h3>George Russell</h3>
+    <p>Mercedes</p>
+    <span class="pts">51 PTS</span>
+  </div>
+
+  <div class="card third">
+    <span class="pos">3RD</span>
+    <h3>Charles Leclerc</h3>
+    <p>Ferrari</p>
+    <span class="pts">34 PTS</span>
+  </div>
+</div>
 
     <!-- TABELA DRIVERS -->
     <div class="table">
@@ -1221,11 +1268,24 @@ html, body {
 
     <!-- PODIUM TEAMS -->
     <div class="podium">
-      <div class="card second">Ferrari</div>
-      <div class="card first">Mercedes</div>
-      <div class="card third">McLaren</div>
-    </div>
+  <div class="card second">
+    <span class="pos">2ND</span>
+    <h3>Ferrari</h3>
+    <span class="pts">67 PTS</span>
+  </div>
 
+  <div class="card first">
+    <span class="pos">1ST</span>
+    <h3>Mercedes</h3>
+    <span class="pts">98 PTS</span>
+  </div>
+
+  <div class="card third">
+    <span class="pos">3RD</span>
+    <h3>McLaren</h3>
+    <span class="pts">18 PTS</span>
+  </div>
+</div>
     <!-- TABELA TEAMS -->
     <div class="table">
       <div class="row header">
