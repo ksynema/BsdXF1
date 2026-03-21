@@ -665,6 +665,13 @@ html, body {
 .news-card p {
   font-size: 14px;
 }
+	.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
 </style>
 </head>
 <body>
@@ -1127,28 +1134,43 @@ html, body {
     </div>
 
   </div>
+	<div class="sub-menu">
+  <button class="tab active" data-tab="drivers">Drivers</button>
+  <button class="tab" data-tab="teams">Teams</button>
+</div>
+
+<div id="drivers" class="tab-content active">
+  <!-- tabela drivers -->
+</div>
+
+<div id="teams" class="tab-content">
+  <!-- tabela teams -->
+</div>
 </div>
 </div>
 
 <script>
-	let activeTab = "drivers";
-let activeSubTab = "standings";
-	const tabs = document.querySelectorAll(".tab");
-const contents = document.querySelectorAll(".tab-content");
+document.addEventListener("DOMContentLoaded", function () {
 
-// 🔥 ustawienie DOMYŚLNEGO widoku
-document.getElementById("drivers").classList.add("active");
+  const tabs = document.querySelectorAll(".tab");
+  const contents = document.querySelectorAll(".tab-content");
 
-tabs.forEach(tab => {
-  tab.addEventListener("click", () => {
-    const target = tab.dataset.tab;
+  if (tabs.length === 0) return; // zabezpieczenie
 
-    tabs.forEach(t => t.classList.remove("active"));
-    contents.forEach(c => c.classList.remove("active"));
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.tab;
 
-    tab.classList.add("active");
-    document.getElementById(target).classList.add("active");
+      tabs.forEach(t => t.classList.remove("active"));
+      contents.forEach(c => c.classList.remove("active"));
+
+      tab.classList.add("active");
+
+      const content = document.getElementById(target);
+      if (content) content.classList.add("active");
+    });
   });
+
 });
 </script>
 </body>
