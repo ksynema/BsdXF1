@@ -672,6 +672,11 @@ html, body {
 .tab-content.active {
   display: block;
 }
+	.standings-section {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
 </style>
 </head>
 <body>
@@ -1094,6 +1099,7 @@ html, body {
   </div>
 </div>
 </div>
+<!-- 🔹 SEKCJA GÓRNA (hero + news) -->
 <div class="top-section">
 
   <!-- HERO -->
@@ -1134,15 +1140,23 @@ html, body {
     </div>
 
   </div>
-</div>
-	<div class="sub-menu">
-  <button class="tab active" data-tab="drivers">Drivers</button>
-  <button class="tab" data-tab="teams">Teams</button>
+
+    <!-- reszta newsów -->
+
 </div>
 
-<div id="drivers" class="tab-content active">
 
-  <div class="table">
+<!-- 🔹 NOWA SEKCJA – STANDINGS -->
+<div class="standings-section">
+
+  <div class="sub-menu">
+    <button class="tab active" data-tab="drivers">Drivers</button>
+    <button class="tab" data-tab="teams">Teams</button>
+  </div>
+
+  <div id="drivers" class="tab-content active">
+    <!-- TUTAJ TWOJA TABELA -->
+	  <div class="table">
     <div class="row header">
       <div>#</div>
       <div>Driver</div>
@@ -1169,10 +1183,11 @@ html, body {
 
   </div>
 
-</div>
-	<div id="teams" class="tab-content">
+  </div>
 
-  <div class="table">
+  <div id="teams" class="tab-content">
+    <!-- TUTAJ TABELA TEAMÓW -->
+	  <div class="table">
     <div class="row header">
       <div>#</div>
       <div>Team</div>
@@ -1191,8 +1206,9 @@ html, body {
 
   </div>
 
-</div>
+  </div>
 
+</div>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
