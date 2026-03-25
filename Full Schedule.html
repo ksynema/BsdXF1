@@ -628,13 +628,14 @@ html, body {
 /* TOR (po prawej, jak na screenie) */
 .track {
   position: absolute;
-  right: 20px;
-  bottom: 20px; /* 🔥 zamiast top:50% */
-  opacity: 0.9;
+  right: 10px;     /* bliżej krawędzi */
+  bottom: 15px;    /* lekko wyżej niż wcześniej */
+  opacity: 0.5;    /* bardziej w tle */
+  pointer-events: none;
 }
 
 .track img {
-  width: 90px; /* 🔥 większy rozmiar */
+  width: 120px;    /* 🔥 większy, jak na screenie */
   height: auto;
   object-fit: contain;
 }
